@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{category}}</h1>
+<p>
+    <h2>{{question}}</h2>
+</p>
+
+{% for answer in answer_variants %}
+    <li>{{answer}}</li>
+{% endfor %}
+
+{% endblock %}
