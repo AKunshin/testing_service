@@ -13,7 +13,7 @@ class Category(models.Model):
 
 
 class Question(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     question_name = models.CharField(max_length=200, verbose_name="Формулировка вопроса")
 
     def __str__(self):
@@ -25,7 +25,7 @@ class Question(models.Model):
 
 
 class AnswerVariant(models.Model):
-    question =models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    question =models.ForeignKey(Question, on_delete=models.CASCADE)
     answer = models.CharField(max_length=200, verbose_name="Ответ")
     is_true = models.BooleanField(default=None, verbose_name="Ответ верный")
     points = models.PositiveIntegerField(default=0, verbose_name="Количество баллов за ответ")
@@ -36,3 +36,8 @@ class AnswerVariant(models.Model):
     class Meta:
         verbose_name = "Вариант ответа"
         verbose_name_plural  = "Варианты ответа"
+
+
+class User(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Имя")
+    user_points = models.IntegerField(verbose_name="Баллы пользователя")
